@@ -27,7 +27,7 @@ const {data} =api.posts.getAll.useQuery()
         </div>
         <div>
           {data?.map(post=>(
-            <div>{post.content}</div>
+            <div key={post.id}>{post.content}</div>
           ))}
         </div>
       </main>
