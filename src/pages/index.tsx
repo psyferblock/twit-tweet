@@ -6,8 +6,10 @@ import styles from "./index.module.css";
 import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
 
 export default function Home() {
-  const hello = api.example.hello.useQuery({ text: "from tRPC" });
 const user=useUser()
+const {data} =api.posts.getAll.useQuery()
+
+
   return (
     
     <>
@@ -22,6 +24,11 @@ const user=useUser()
           {!!user.isSignedIn && <SignOutButton/>}
         
          
+        </div>
+        <div>
+          {data?.map(post=>(
+            <div>{post.content}</div>
+          ))}
         </div>
       </main>
     </>
